@@ -1,5 +1,5 @@
 #Resources
-#agency
+##agency
 Represents the business unit that operates this service.
 ###Fields
 | Name | Type | Required? | Multi Valued? | Default | Description | 
@@ -18,7 +18,7 @@ Represents the business unit that operates this service.
 | Code | Result | 
 |  ---  |  ---  | 
 | 200 | [agency] |
-#calendar
+##calendar
 Represents different time frames that have different schedules.
 ###Fields
 | Name | Type | Required? | Multi Valued? | Default | Description | 
@@ -45,7 +45,7 @@ Represents different time frames that have different schedules.
 |  ---  |  ---  | 
 | 200 | [calendar] |
 
-#route
+##route
 The path a service takes.
 ###Fields
 | Name | Type | Required? | Multi Valued? | Default | Description | 
@@ -68,7 +68,7 @@ The path a service takes.
 |  ---  |  ---  | 
 | 200 | [route] |
 
-#stop
+##stop
 Represnets a stop (you know, where you can like get of and like get on).
 ###Fields
 | Name | Type | Required? | Multi Valued? | Default | Description | 
@@ -90,7 +90,7 @@ Represnets a stop (you know, where you can like get of and like get on).
 |  ---  |  ---  | 
 | 200 | [stop] |
 
-#stop_time
+##stop_time
 Represents a stop on a particular trip.
 ###Fields
 | Name | Type | Required? | Multi Valued? | Default | Description | 
@@ -111,7 +111,7 @@ Represents a stop on a particular trip.
 |  ---  |  ---  | 
 | 200 | [stop_time] |
 
-#trip
+##trip
 The path the vehicle takes stopping for people along the way (unless it's full of course.  Then it might just keep going.  You never know.)
 ###Fields
 | Name | Type | Required? | Multi Valued? | Default | Description | 
@@ -132,7 +132,7 @@ The path the vehicle takes stopping for people along the way (unless it's full o
 |  ---  |  ---  | 
 | 200 | [trip] |
 
-#planned_trip
+##planned_trip
 A trip as planned for a particular user.  Effectiveliy, a set of steps to get from stop A to stop B.
 ###Fields
 | Name | Type | Required? | Multi Valued? | Default | Description | 
