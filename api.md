@@ -2,12 +2,14 @@
 Represents the business unit that operates this service.
 ##Fields
 | Name | Type | Required? | Multi Valued? | Default | Description |
+| --- | --- | --- | --- | --- | --- |
 | name | string | false | false | None |  |
 | timezone | string | false | false | None |  |
 | url | string | false | false | None |  |
 Represents different time frames that have different schedules.
 ##Fields
 | Name | Type | Required? | Multi Valued? | Default | Description |
+| --- | --- | --- | --- | --- | --- |
 | id | string | false | false | None | Text key uniquely identifying the time frame (SAt, SUN, WKDY, etc...). |
 | start_date | date-time-iso8601 | false | false | None | When the calendar starts (inclusive). |
 | end_date | date-time-iso8601 | false | false | None | When the calendar ends (exclusive). |
@@ -22,6 +24,7 @@ Represents different time frames that have different schedules.
 The path a service takes.
 ##Fields
 | Name | Type | Required? | Multi Valued? | Default | Description |
+| --- | --- | --- | --- | --- | --- |
 | id | string | false | false | None |  |
 | agency | agency | false | false | None |  |
 | short_name | string | false | false | None |  |
@@ -32,6 +35,7 @@ The path a service takes.
 Represnets a stop (you know, where you can like get of and like get on).
 ##Fields
 | Name | Type | Required? | Multi Valued? | Default | Description |
+| --- | --- | --- | --- | --- | --- |
 | id | string | false | false | None |  |
 | name | string | false | false | None |  |
 | description | string | false | false | None |  |
@@ -41,6 +45,7 @@ Represnets a stop (you know, where you can like get of and like get on).
 Represents a stop on a particular trip.
 ##Fields
 | Name | Type | Required? | Multi Valued? | Default | Description |
+| --- | --- | --- | --- | --- | --- |
 | trip | trip | false | false | None |  |
 | arrival_time | date-time-iso8601 | false | false | None | The time that the vehicle arrives at the station. |
 | departure_time | date-time-iso8601 | false | false | None | The time that the vehicle leaves the station.  Often the same as the arrival time indicating it's a quick stop. |
@@ -50,6 +55,7 @@ Represents a stop on a particular trip.
 The path the vehicle takes stopping for people along the way (unless it's full of course.  Then it might just keep going.  You never know.)
 ##Fields
 | Name | Type | Required? | Multi Valued? | Default | Description |
+| --- | --- | --- | --- | --- | --- |
 | id | string | false | false | None |  |
 | route | route | false | false | None |  |
 | direction | integer | false | false | None | Sorta silly because it's make an assumption about where the 'center' is but: 1 - outbound, 2 - inbound |
@@ -58,5 +64,6 @@ The path the vehicle takes stopping for people along the way (unless it's full o
 A trip as planned for a particular user.  Effectiveliy, a set of steps to get from stop A to stop B.
 ##Fields
 | Name | Type | Required? | Multi Valued? | Default | Description |
+| --- | --- | --- | --- | --- | --- |
 | steps | [planned_trip_step] | false | true | None |  |
 
