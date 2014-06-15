@@ -1,0 +1,8 @@
+{
+  "name": "apidoc-2-markdown",
+  "version": "0.0.1",
+  "repository": "https://github.com/jenglert/apidoc-2-markdown",
+  "dependencies": {
+    "underscore": "=1.6.x"
+  }
+}

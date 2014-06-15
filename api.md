@@ -1,8 +1,3 @@
-apidoc-2-markdown
-=================
-
-Converts the information in a apidoc.json file into markdown documentation.
-
 #Resources
 Represents the business unit that operates this service.
 ##Fields
@@ -65,4 +60,3 @@ A trip as planned for a particular user.  Effectiveliy, a set of steps to get fr
 ##Fields
 Name | Type | Required? | Multi Valued? | Default | Description
  | steps | [planned_trip_step] |  | true |  |  | 
-

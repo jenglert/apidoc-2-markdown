@@ -1,0 +1,408 @@
+{
+"name": "GTFS",
+"description": "(General Transit Feed Specification) Provides information about public transport schedules.  Github: https://github.com/jenglert/node-gtfs",
+"base_url": "http://notinprod",
+"models": {
+"agency": {
+"description": "Represents the business unit that operates this service.",
+"fields": [
+{
+"name": "name",
+"type": "string"
+},
+{
+"name": "timezone",
+"type": "string"
+},
+{
+"name": "url",
+"type": "string"
+}
+]
+},
+"calendar": {
+"description": "Represents different time frames that have different schedules.",
+"fields": [
+{
+"name": "id",
+"type": "string",
+"description": "Text key uniquely identifying the time frame (SAt, SUN, WKDY, etc...)."
+},
+{
+"name": "start_date",
+"type": "date-time-iso8601",
+"description": "When the calendar starts (inclusive)."
+},
+{
+"name": "end_date",
+"type": "date-time-iso8601",
+"description": "When the calendar ends (exclusive)."
+},
+{
+"name": "monday",
+"type": "boolean"
+},
+{
+"name": "tuesday",
+"type": "boolean"
+},
+{
+"name": "wednesday",
+"type": "boolean"
+},
+{
+"name": "thursday",
+"type": "boolean"
+},
+{
+"name": "friday",
+"type": "boolean"
+},
+{
+"name": "saturday",
+"type": "boolean"
+},
+{
+"name": "sunday",
+"type": "boolean"
+}
+]
+},
+"route": {
+"description": "The path a service takes.",
+"fields": [
+{
+"name": "id",
+"type": "string"
+},
+{
+"name": "agency",
+"type": "agency"
+},
+{
+"name": "short_name",
+"type": "string"
+},
+{
+"name": "long_name",
+"type": "string"
+},
+{
+"name": "description",
+"type": "string"
+},
+{
+"name": "type",
+"type": "integer",
+"description": "0 - tram/lightrail, 1 - subway, 2 - rail, 3 - bus, 4 - ferry, 5 - cable car, 6 - gondola, 7 - funicular"
+}
+]
+},
+"stop": {
+"description": "Represnets a stop (you know, where you can like get of and like get on).",
+"fields": [
+{
+"name": "id",
+"type": "string"
+},
+{
+"name": "name",
+"type": "string"
+},
+{
+"name": "description",
+"type": "string"
+},
+{
+"name": "latitude",
+"type": "double"
+},
+{
+"name": "longitude",
+"type": "double"
+}
+]
+},
+"stop_time": {
+"description": "Represents a stop on a particular trip.",
+"fields": [
+{
+"name": "trip",
+"type": "trip"
+},
+{
+"name": "arrival_time",
+"type": "date-time-iso8601",
+"description": "The time that the vehicle arrives at the station."
+},
+{
+"name": "departure_time",
+"type": "date-time-iso8601",
+"description": "The time that the vehicle leaves the station.  Often the same as the arrival time indicating it's a quick stop."
+},
+{
+"name": "stop",
+"type": "stop"
+},
+{
+"name": "sequence",
+"type": "integer",
+"description": "The order of the stop for this particular trip."
+}
+]
+},
+"trip": {
+"description": "The path the vehicle takes stopping for people along the way (unless it's full of course.  Then it might just keep going.  You never know.)",
+"fields": [
+{
+"name": "id",
+"type": "string"
+},
+{
+"name": "route",
+"type": "route"
+},
+{
+"name": "direction",
+"type": "integer",
+"description": "Sorta silly because it's make an assumption about where the 'center' is but: 1 - outbound, 2 - inbound"
+},
+{
+"name": "calendar",
+"type": "calendar"
+}
+]
+},
+"planned_trip_step": {
+"description": "A step in a trip",
+"fields": [
+{
+"name": "departure_stop",
+"type": "stop"
+},
+{
+"name": "departure_date_time",
+"type": "date-time-iso8601"
+},
+{
+"name": "arrival_stop",
+"type": "stop"
+},
+{
+"name": "arrival_date_time",
+"type": "date-time-iso8601"
+}
+]
+},
+"planned_trip": {
+"description": "A trip as planned for a particular user.  Effectiveliy, a set of steps to get from stop A to stop B.",
+"fields": [
+{
+"name": "steps",
+"type": "[planned_trip_step]"
+}
+]
+}
+},
+"resources": [
+{
+"model": "agency",
+"operations": [
+{
+"method": "GET",
+"description": "Retrieves all agencies.",
+"parameters": [
+{
+"name": "limit",
+"type": "integer",
+"default": 25,
+"description": "The number of records to return",
+"minimum": 0,
+"maximum": 100
+},
+{
+"name": "offset",
+"type": "integer",
+"default": 0,
+"description": "Used to paginate. First page of results is 0.",
+"minimum": 0
+}
+],
+"responses": {
+"200": {
+"type": "[agency]"
+}
+}
+}
+]
+},
+{
+"model": "calendar",
+"operations": [
+{
+"method": "GET",
+"description": "Retrieves all calendars.",
+"parameters": [
+{
+"name": "limit",
+"type": "integer",
+"default": 25,
+"description": "The number of records to return",
+"minimum": 0,
+"maximum": 100
+},
+{
+"name": "offset",
+"type": "integer",
+"default": 0,
+"description": "Used to paginate. First page of results is 0.",
+"minimum": 0
+}
+],
+"responses": {
+"200": {
+"type": "[calendar]"
+}
+}
+}
+]
+},
+{
+"model": "route",
+"operations": [
+{
+"method": "GET",
+"description": "Retrieves all routes.",
+"parameters": [
+{
+"name": "limit",
+"type": "integer",
+"default": 25,
+"description": "The number of records to return",
+"minimum": 0,
+"maximum": 100
+},
+{
+"name": "offset",
+"type": "integer",
+"default": 0,
+"description": "Used to paginate. First page of results is 0.",
+"minimum": 0
+}
+],
+"responses": {
+"200": {
+"type": "[route]"
+}
+}
+}
+]
+},
+{
+"model": "stop",
+"operations": [
+{
+"method": "GET",
+"description": "Retrieves all stops.",
+"parameters": [
+{
+"name": "limit",
+"type": "integer",
+"default": 25,
+"description": "The number of records to return",
+"minimum": 0,
+"maximum": 100
+},
+{
+"name": "offset",
+"type": "integer",
+"default": 0,
+"description": "Used to paginate. First page of results is 0.",
+"minimum": 0
+}
+],
+"responses": {
+"200": {
+"type": "[stop]"
+}
+}
+}
+]
+},
+{
+"model": "stop_time",
+"operations": [
+{
+"method": "GET",
+"description": "Search all services. Results are always paginated.",
+"parameters": [
+{
+"name": "trip_id",
+"type": "string",
+"description": "The id of the trip you are looking for stop times for."
+}
+],
+"responses": {
+"200": {
+"type": "[stop_time]"
+}
+}
+}
+]
+},
+{
+"model": "trip",
+"operations": [
+{
+"method": "GET",
+"description": "Finds a trip by route, direction and calendar.",
+"parameters": [
+{
+"name": "route_id",
+"type": "string"
+},
+{
+"name": "calendar_id",
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"type": "[trip]"
+}
+}
+}
+]
+},
+{
+"model": "planned_trip",
+"operations": [
+{
+"method": "GET",
+"description": "Attempts to find a trip from the two specified stops.  Returns 0 or more planned trips. Returns 0 if a possible trip does not exist.",
+"parameters": [
+{
+"name": "departure_stop_id",
+"type": "string"
+},
+{
+"name": "destination_stop_id",
+"type": "string"
+},
+{
+"name": "departure_date_time",
+"type": "date-time-iso8601",
+"description": "Defaults to right now if not provided.",
+"required": "false"
+}
+],
+"responses": {
+"200": {
+"type": "[planned_trip]"
+}
+}
+}
+]
+}
+]
+}
